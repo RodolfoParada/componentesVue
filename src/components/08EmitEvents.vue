@@ -1,0 +1,25 @@
+<template>
+  <h2>Emit Events</h2>    
+  <label for="newMessage">Mensaje</label>
+  <input id="newMessage" v-model="message"/>
+  <button @click="notify">Notificar al componente padre</button>
+   <button @click="$emit('onFire', message)">Notificar al componente padre forma2</button>
+</template>
+
+
+<script>
+import { ref } from "vue";
+
+export default {
+    name: 'EmitEvents',
+    emits:["onFire"],
+    setup(props, {emit}) {
+        const message = ref(" ")
+        const notify = () => {
+          emit("onFire", message.value)
+        }
+        return {message, notify}
+    }
+}
+
+</script>
